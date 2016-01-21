@@ -1,0 +1,18 @@
+language: ruby
+notifications:
+  email: false
+  hipchat:
+    rooms:
+      secure: qtOAN+gAW2ycPpCM8GtbESzhW8NMWEByMXn8N6BJ2fdxIam5pTDQqGQE73IoSV8eOKf5PD/grC6RGUoLOkN8IZDj+yAln8zLew8cGJxthMEMC6Ctg0sH/ziPtnZVxh4ujv4bbEQL6lmXzGRAJCu5AylHFEZOGmSAxSQauAIUXv5t/n3RY74grqj3GNgQPmTmBrNqViAWjTagG4/zPvnxyeUs9CtyXGynbifaCbwMK6Je4cXSWn2iDNoXqt4LYK91YuKzmYK4yvfvC+HFbMMu5wtC4tLIJD9SyAoefX1HnEeFtTiADoh3IvD4/cX8U01ewGulJGwZAQ2zqhh8YoQPnchqsG8gzD5OccAPBo72vg98GlC/lcwPYhvs1gebzuYYkL54kTjdVKKJAWI+TBjyCCztU2rDJxoCRn+jnkILXeVnIlu2aeNWCN8xMYSg92dKBqBkMfVBcy4z5NBrLWLO5YJ0YLzOcxhqwh/ytQUcr2XTk5iFFj2oPgpVG/hp9qUa5l6K7m+wGy0+k5ZSOR9FoSvOwnrJX9AIBvnTRazWSap63YYFE7dK8enujos1nUmIrv1gISAsh7FWUperfrwXYQSEiY/xzjgNP9tIhQpYGlCewfjqKhMLHlW/S5RopxAu2/1IQMwtHsxbohsrrrEejkyMo2h8ad0+SANpoq7PqwE=
+    template:
+    - 'Gem - %{repository} #%{build_number} (%{build_url}) by %{author}: %{message}'
+rvm:
+- 2.0.0
+deploy:
+  provider: rubygems
+  api_key:
+    secure: RNAMawalacgzKgMb6zxBaIcaXuKZD0G9G2ZG7i5b3TKBhJU32A4IGn+TbLkpbg6jaRd/sY86+oUaJjqpCRpkpbgm+u+/tVCTD+KKQbnsathLIAJYht74ymZQOEL0dGwjPNwwk1h9fVA0N7qyagk/SGnxZ5aQ8ueJptUvLpQ4p7xWUjhHTLqpPt2WFV4+4KUVZsDT4PmTJppkx8XJe+ikijGi8PV1L2agQHlB/gmlogyJkHVbfhMtyqsEXFQdRJLUz15pWl2azuuhmPcVDR6tPUw6wcr7+gbcRNqjbOjR2t5vAXuC784mQPsZAzMmLMPRqJvDvQDT/sQcqdqL4E4lKyTzURHXQt1aNPNSJjWnqocwEysP4MowZ/jWVcxBUX/g8cPmo6KqZVE1c7KC6hLsyxMCsUfl3nOrE5Vf0EgWwqxP2G965ZyjEQ3vG/DHZnVKd9VhQhUfbPuCbTjqecnkVu4IJLtrG2hLfG9V3ZDVSuGlTXINGrpF1EqNf65ub9JbCR9VAfrVwRoZFWVKjvLqjGtuRKuh0rh7NfWCyATa+aXqRagdYzZq1sVQhIhJn7u1r8hYKOMIo9mjMcHTywi/EGUwtbl2SO46mtUMmtxU3dMoukwWznkbawp+eqdJc3OQVuiKWo9nhEITeYWTkQxbB5qDXPJrzu8+0zyIuEy9yqo=
+  gem: confluence_reporter
+  on:
+    tags: true
+    repo: Adaptavist/confluence_reporter
