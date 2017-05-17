@@ -137,12 +137,13 @@ module ConfluenceReporter
         # if parrent_page_id is provided it adjusts ancestor accordingly and 
         # the same space short key  
         def create_page(title, space, parrent_page_id=nil)
+            message = @body_message.gsub("&&", "&amp;&amp;").gsub(/\\u001b.../, "   ").encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
             params = { 'type' => 'page',
                 'title' => title,
                 'space' => {'key' => space},
                 'body' => {
                     'storage' => {
-                        'value' => ("#{ @body_message.to_json.gsub("&&", "&amp;&amp;").gsub(/\\u001b.../, "   ") }").force_encoding('UTF-8'),
+                        'value' => message.to_json,
                         'representation' => 'storage'
                         }
                     }
@@ -172,9 +173,10 @@ module ConfluenceReporter
         end
 
         def append_to_page(page_id, parrent_page_id)
+            message = @body_message.gsub("&&", "&amp;&amp;").gsub(/\\u001b.../, "   ").encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
             page = find_page_by_id(page_id)
             page["version"]["number"] = page["version"]["number"].to_i + 1
-            page["body"]["storage"]["value"] = (page["body"]["storage"]["value"] + "#{ @body_message.to_json.gsub(/\\u001b.../, "   ") }").force_encoding('UTF-8')
+            page["body"]["storage"]["value"] = (page["body"]["storage"]["value"] + "#{message.to_json}").force_encoding('UTF-8')
             page['ancestors'] = [{'type' => 'page', 'id' => parrent_page_id}]
             uri = URI.parse(@base_url + "#{page_id}")
             https = Net::HTTP.new(uri.host,uri.port)
